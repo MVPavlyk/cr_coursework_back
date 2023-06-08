@@ -88,6 +88,7 @@ public class ReservoirService implements IReservoirService{
     public ApiResponse Delete(int id) {
         var existingReservoir = _repository.findById(id);
         if(existingReservoir.isEmpty()) return GetMessageReservoirWithIdNotFound(id);
+        _repository.delete(existingReservoir.get());
 
         return new ApiResponse("Успішно видалено!", null);
     }
